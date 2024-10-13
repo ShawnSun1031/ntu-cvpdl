@@ -1,0 +1,26 @@
+train: /train/images
+val: /valid/images
+test: /valid_test/images
+
+
+nc: 17
+names: [
+  'Person', 
+  'Ear', 
+  'Earmuffs', 
+  'Face', 
+  'Face-guard', 
+  'Face-mask-medical',
+  'Foot',
+  'Tools',
+  'Glasses', 
+  'Gloves',
+  'Helmet', 
+  'Hands', 
+  'Head', 
+  'Medical-suit', 
+  'Shoes', 
+  'Safety-suit', 
+  'Safety-vest' 
+]
+
