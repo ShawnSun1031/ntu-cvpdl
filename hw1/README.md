@@ -10,6 +10,9 @@ conda create -n cvpdl-hw1 python=3.9
 conda activate cvpdl-hw1
 ```
 ```sh=
+pip install uv
+```
+```sh=
 uv sync
 ```
 
