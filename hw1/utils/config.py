@@ -1,0 +1,63 @@
+import supervision as sv
+
+ori_id2label = {
+    0: "dataset",
+    1: "Ear",
+    2: "Earmuffs",
+    3: "Face",
+    4: "Face-guard",
+    5: "Face-mask-medical",
+    6: "Foot",
+    7: "Glasses",
+    8: "Gloves",
+    9: "Hands",
+    10: "Head",
+    11: "Helmet",
+    12: "Medical-suit",
+    13: "Person",
+    14: "Safety-suit",
+    15: "Safety-vest",
+    16: "Shoes",
+    17: "Tools",
+}
+
+id2label = {
+    0: "Person",
+    1: "Ear",
+    2: "Earmuffs",
+    3: "Face",
+    4: "Face-guard",
+    5: "Face-mask-medical",
+    6: "Foot",
+    7: "Toos",
+    8: "Glasses",
+    9: "Gloves",
+    10: "Helmet",
+    11: "Hands",
+    12: "Head",
+    13: "Medical-suit",
+    14: "Shoes",
+    15: "Safety-suit",
+    16: "Safety-vest",
+}
+
+id_mapping_table = {
+    1: 1,
+    2: 2,
+    3: 3,
+    4: 4,
+    5: 5,
+    6: 6,
+    7: 8,
+    8: 9,
+    9: 11,
+    10: 12,
+    11: 10,
+    12: 13,
+    13: 0,
+    14: 15,
+    15: 16,
+    16: 14,
+    17: 7,
+}
+box_annotator = sv.BoxAnnotator()

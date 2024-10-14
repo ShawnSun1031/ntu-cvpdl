@@ -1,0 +1,14 @@
+[project]
+name = "cvpdl-hw1-project"
+version = "0.1.0"
+description = "CVPDL hw1 project"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "matplotlib>=3.9.2",
+    "pytorch-lightning>=2.4.0",
+    "roboflow>=1.1.47",
+    "supervision==0.3.0",
+    "timm>=1.0.9",
+    "transformers>=4.45.2",
+]

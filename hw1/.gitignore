@@ -1,1 +1,8 @@
 /dataset
+/train/cvpdl-hw1-2
+/train/lightning_logs
+*.ipynb_checkpoints
+.history
+/train/custom_model
+__pycache__
+custom_model
