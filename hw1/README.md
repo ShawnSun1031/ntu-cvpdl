@@ -45,7 +45,7 @@ uv sync
     --image_path {your_valid_images_path} \
     --model_path {your_model_path} \
     -o valid.json \
-    --confience_threshold 0.8 \
+    --confience_threshold 0.95 \
     --iou_threshold 0.5
     ```
 3. Calculate mAP by `eval.py`
