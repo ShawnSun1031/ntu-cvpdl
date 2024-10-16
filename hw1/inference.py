@@ -43,6 +43,9 @@ def get_infer_results(image_path, confience_threshold, iou_threshold):
         threshold=iou_threshold
     )
 
+    # labels = [f"{ori_id2label[class_id]} {confidence:.2f}" for _, confidence, class_id, _ in detections]
+    # frame = box_annotator.annotate(scene=image.copy(), detections=detections, labels=labels)
+    # sv.show_frame_in_notebook(frame, (16, 16))
     return detections
 
 
@@ -70,15 +73,17 @@ def output_json(
                 confience_threshold,
                 iou_threshold,
             )
+            image_name = single_image_path.split("/")[-1]
+            infer_anwser[f"{image_name}"] = {
+                "boxes": detections.xyxy.tolist(),
+                "labels": [
+                    id_mapping_table[class_id]
+                    for class_id in detections.class_id.tolist()
+                ],
+            }
         except Exception:
-            detections = get_infer_results(single_image_path, 0, iou_threshold)
-        image_name = single_image_path.split("/")[-1]
-        infer_anwser[f"{image_name}"] = {
-            "boxes": detections.xyxy.tolist(),
-            "labels": [
-                id_mapping_table[class_id] for class_id in detections.class_id.tolist()
-            ],
-        }
+            print("pass")
+            pass
     with open(output_json_path, "w") as f:
         json.dump(infer_anwser, f, indent=4)
 
