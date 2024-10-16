@@ -20,8 +20,8 @@ uv sync
 1. Train DETR model by using 4070Ti for 80 epochs. Detailed training setting, please see [train/train_huggingface_detr_on_custom_data.ipynb](https://github.com/ShawnSun1031/ntu-cvpdl/blob/main/hw1/train/train_huggingface_detr_on_custom_dataset.ipynb).
     - the original data set can be downloaded [here](https://drive.google.com/file/d/1lWdAdjRvQHULW2AbDeZiR-S4Qw5SQ3nE/view)
     - however, according to the [roboflow colab](https://colab.research.google.com/github/roboflow-ai/notebooks/blob/main/notebooks/train-huggingface-detr-on-custom-dataset.ipynb), uploading my custom data set to roboflow universe. 
-        - preprocess: stretch resize to 640*640
-        - augmentation: flip(horizontal), rotation(-15~15)
+        - preprocess: stretch resize to 1024*1024
+        - augmentation: flip(horizontal), blur (1.5px)
         - processed dataset can be downloaded by
             - Jupyter
                 ```
@@ -30,17 +30,32 @@ uv sync
                 from roboflow import Roboflow
                 rf = Roboflow(api_key="T0BjMN6ZWjFYYXId6oOe")
                 project = rf.workspace("chsunpcvpdlproject").project("cvpdl-hw1-g9ehq")
-                version = project.version(2)
+                version = project.version(6)
                 dataset = version.download("coco")
                 ```
             - Terminal
                 ```
-                curl -L "https://app.roboflow.com/ds/Ho90L8WxKi?key=dSpTtRa0Bj" > roboflow.zip; unzip roboflow.zip; rm roboflow.zip
+                curl -L "https://app.roboflow.com/ds/EbA2McLzjt?key=1P7GpJm3NE" > roboflow.zip; unzip roboflow.zip; rm roboflow.zip
                 ```
-    - the pre-trained model can be downloaded [here](https://drive.google.com/drive/folders/1bsdKuS4kwab59WVaerjARgv4I6f5tGx2)
+    - the pre-trained model can be downloaded [here](https://drive.google.com/file/d/1aTZaObnAvdeKxk8sUGXXKegCzqcN8hRX/view?usp=sharing)
 2. Use `inference.py` to produce the prediction of each dataset.
+    - produce valid.json & test.json 
+    ```sh=
+    python inference.py \
+    --image_path {your_valid_images_path} \
+    --model_path {your_model_path} \
+    -o valid.json \
+    --confience_threshold 0.8 \
+    --iou_threshold 0.5
+    ```
+3. Calculate mAP by `eval.py`
+    ```sh=
+    python inference/eval.py \
+    valid.json  \
+    inference/valid_target.json
+    ```
 
 
 ## Results
 
-currently, `valid_r10945004.json` got 0.28 mAP
+currently, `valid_r10945004.json` got 0.355 mAP
