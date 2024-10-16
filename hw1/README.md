@@ -58,4 +58,4 @@ uv sync
 
 ## Results
 
-currently, `valid_r10945004.json` got 0.355 mAP
+currently, `valid_r10945004.json` got 0.3806 mAP
