@@ -81,9 +81,7 @@ def output_json(
 
     # output to hw1 json format
     infer_anwser: dict = {}
-    image_paths = glob(
-        os.path.join("dataset", "origin_dataset", "valid", "images", "*")
-    )
+    image_paths = glob(os.path.join(image_path, "*"))
 
     for idx, single_image_path in enumerate(image_paths):
         print(f"[{idx}] Now infer at {image_path}...")
