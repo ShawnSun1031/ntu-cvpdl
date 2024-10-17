@@ -40,7 +40,12 @@ def load_trained_model(model_path):
     MODEL.to(DEVICE)
 
 
-def get_infer_results(image_path, confience_threshold, iou_threshold):
+def get_infer_results(idx, image_path, confience_threshold, iou_threshold):
+    print(
+        f"[{idx}] Now infer at {image_path}... confience_threshold: {confience_threshold}"
+    )
+    if confience_threshold < 0.70:
+        return None
     # load images
     image = cv2.imread(image_path)
     image = cv2.resize(image, (1024, 1024))
@@ -59,10 +64,14 @@ def get_infer_results(image_path, confience_threshold, iou_threshold):
         )[0]
 
     # annotate
-    detections = sv.Detections.from_transformers(transformers_results=results).with_nms(
-        threshold=iou_threshold
-    )
-
+    try:
+        detections = sv.Detections.from_transformers(
+            transformers_results=results
+        ).with_nms(threshold=iou_threshold)
+    except Exception:
+        detections = get_infer_results(
+            idx, image_path, confience_threshold - 0.05, iou_threshold
+        )
     # labels = [f"{ori_id2label[class_id]} {confidence:.2f}" for _, confidence, class_id, _ in detections]
     # frame = box_annotator.annotate(scene=image.copy(), detections=detections, labels=labels)
     # sv.show_frame_in_notebook(frame, (16, 16))
@@ -82,29 +91,28 @@ def output_json(
     # output to hw1 json format
     infer_anwser: dict = {}
     image_paths = glob(os.path.join(image_path, "*"))
-
     for idx, single_image_path in enumerate(image_paths):
-        print(f"[{idx}] Now infer at {image_path}...")
-        try:
-            detections = get_infer_results(
-                single_image_path,
-                confience_threshold,
-                iou_threshold,
-            )
+        detections = get_infer_results(
+            idx=idx,
+            image_path=single_image_path,
+            confience_threshold=confience_threshold,
+            iou_threshold=iou_threshold,
+        )
+        image_name = single_image_path.split("/")[-1]
+        if detections is None:
+            mapping_boxes = []
+            labels = []
+        else:
             mapping_boxes = mapping_box_coordinate(
                 boxes=detections.xyxy.tolist(), image_path=single_image_path
             )
-            image_name = single_image_path.split("/")[-1]
-            infer_anwser[f"{image_name}"] = {
-                "boxes": mapping_boxes,
-                "labels": [
-                    id_mapping_table[class_id]
-                    for class_id in detections.class_id.tolist()
-                ],
-            }
-        except Exception:
-            print("pass")
-            pass
+            labels = [
+                id_mapping_table[class_id] for class_id in detections.class_id.tolist()
+            ]
+        infer_anwser[f"{image_name}"] = {
+            "boxes": mapping_boxes,
+            "labels": labels,
+        }
     with open(output_json_path, "w") as f:
         json.dump(infer_anwser, f, indent=4)
 
