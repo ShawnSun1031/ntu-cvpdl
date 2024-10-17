@@ -41,7 +41,7 @@ source .venv/bin/activate
                 ```
                 curl -L "https://app.roboflow.com/ds/EbA2McLzjt?key=1P7GpJm3NE" > roboflow.zip; unzip roboflow.zip; rm roboflow.zip
                 ```
-    - the pre-trained model can be downloaded [here](https://drive.google.com/file/d/1aTZaObnAvdeKxk8sUGXXKegCzqcN8hRX/view?usp=sharing)
+    - the pre-trained model can be downloaded [here](https://drive.google.com/file/d/1WaVtft54XxmR1WKLc3vN6LXEmsJdw0qT/view?usp=sharing)
 2. Use `inference.py` to produce the prediction of each dataset.
     - produce valid.json & test.json 
     ```sh=
@@ -62,4 +62,4 @@ source .venv/bin/activate
 
 ## Results
 
-currently, `valid_r10945004.json` got 0.3806 mAP
+currently, `valid_r10945004.json` got 0.4659 mAP
