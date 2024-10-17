@@ -34,12 +34,14 @@ source .venv/bin/activate
                 from roboflow import Roboflow
                 rf = Roboflow(api_key="T0BjMN6ZWjFYYXId6oOe")
                 project = rf.workspace("chsunpcvpdlproject").project("cvpdl-hw1-g9ehq")
-                version = project.version(6)
+                version = project.version(7)
                 dataset = version.download("coco")
                 ```
             - Terminal
                 ```
-                curl -L "https://app.roboflow.com/ds/EbA2McLzjt?key=1P7GpJm3NE" > roboflow.zip; unzip roboflow.zip; rm roboflow.zip
+                curl -L "https://app.roboflow.com/ds/bV0U8ErUYL?key=S4jyQnD4xr" > roboflow.zip;
+                unzip roboflow.zip;
+                rm roboflow.zip     
                 ```
     - the pre-trained model can be downloaded [here](https://drive.google.com/drive/folders/1dkIy2tJewcqIJGWV4-sxqnNmCPvQgK4d?usp=sharing)
 2. Use `inference.py` to produce the prediction of each dataset.
