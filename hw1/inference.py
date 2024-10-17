@@ -11,6 +11,25 @@ from transformers import DetrForObjectDetection, DetrImageProcessor
 from utils.config import id_mapping_table
 
 
+def mapping_box_coordinate(
+    boxes: list,
+    image_path: str,
+):
+    orig_image = cv2.imread(image_path)
+
+    height, width = orig_image.shape[:2]
+    resize_width_factor = width / 1024
+    resize_height_factor = height / 1024
+    mapping_boxes = boxes.copy()
+    for i in range(len(boxes)):
+        mapping_boxes[i][0] = mapping_boxes[i][0] * resize_width_factor
+        mapping_boxes[i][2] = mapping_boxes[i][2] * resize_width_factor
+        mapping_boxes[i][1] = mapping_boxes[i][1] * resize_height_factor
+        mapping_boxes[i][3] = mapping_boxes[i][3] * resize_height_factor
+
+    return mapping_boxes
+
+
 def load_trained_model(model_path):
     # load trained-model
     global DEVICE, IMAGE_PROCESSOR, MODEL
@@ -24,6 +43,7 @@ def load_trained_model(model_path):
 def get_infer_results(image_path, confience_threshold, iou_threshold):
     # load images
     image = cv2.imread(image_path)
+    image = cv2.resize(image, (1024, 1024))
 
     # inference
     with torch.no_grad():
@@ -73,9 +93,12 @@ def output_json(
                 confience_threshold,
                 iou_threshold,
             )
+            mapping_boxes = mapping_box_coordinate(
+                boxes=detections.xyxy.tolist(), image_path=single_image_path
+            )
             image_name = single_image_path.split("/")[-1]
             infer_anwser[f"{image_name}"] = {
-                "boxes": detections.xyxy.tolist(),
+                "boxes": mapping_boxes,
                 "labels": [
                     id_mapping_table[class_id]
                     for class_id in detections.class_id.tolist()

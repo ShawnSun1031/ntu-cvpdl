@@ -15,6 +15,10 @@ pip install uv
 ```sh=
 uv sync
 ```
+- activate venv
+```sh=
+source .venv/bin/activate
+```
 
 ## Steps
 1. Train DETR model by using 4070Ti for 80 epochs. Detailed training setting, please see [train/train_huggingface_detr_on_custom_data.ipynb](https://github.com/ShawnSun1031/ntu-cvpdl/blob/main/hw1/train/train_huggingface_detr_on_custom_dataset.ipynb).
