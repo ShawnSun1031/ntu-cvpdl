@@ -51,8 +51,8 @@ source .venv/bin/activate
     --image_path {your_valid_images_path} \
     --model_path {your_model_path} \
     -o valid.json \
-    --confience_threshold 0.95 \
-    --iou_threshold 0.5
+    --confience_threshold 0.8 \
+    --iou_threshold 0.7
     ```
 3. Calculate mAP by `eval.py`
     ```sh=
