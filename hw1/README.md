@@ -64,4 +64,4 @@ source .venv/bin/activate
 
 ## Results
 
-currently, `valid_r10945004.json` got 0.4659 mAP
+currently, `valid_r10945004.json` got 0.4506 mAP
