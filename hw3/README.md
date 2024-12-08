@@ -28,6 +28,15 @@ source .venv/bin/activate
 2. Text-to-Image Generation
     ```=sh
     bash script/run_gligen_inference.sh
+
+    # cd src/gligen
+    # .venv/bin/python gligen_inference.py \
+    # --ckpt gligen_checkpoints/checkpoint_generation_text.bin \
+    # --label_json ../label_filled_blip2-flan-t5-xl.json \
+    # --selected_prompt generated_text \
+    # --folder generation_samples_blip2_opt_6_7b_coco_generated_text \
+    # --text_only
+    # cd ..
     ```
     Notice that the src/gligen is a hack from https://github.com/gligen/GLIGEN/tree/master
 
