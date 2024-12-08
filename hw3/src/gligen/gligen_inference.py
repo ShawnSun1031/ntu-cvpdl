@@ -544,7 +544,6 @@ if __name__ == "__main__":
         choices=['generated_text', 'prompt_w_label', 'prompt_w_suffix'],
     )
     parser.add_argument("--text_only", action='store_true')
-    parser.add_argument("-o", "--output_folder", type=str, default="generation_box_image")
     args = parser.parse_args()
     
     ckpt = args.ckpt
