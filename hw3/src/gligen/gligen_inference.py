@@ -147,7 +147,7 @@ def complete_mask(has_mask, max_objs):
 @cache
 @torch.no_grad()
 def load_pretrained_model():
-    max_objs = 30
+    max_objs = 120
     version = "openai/clip-vit-large-patch14"
     model = CLIPModel.from_pretrained(version).cuda()
     processor = CLIPProcessor.from_pretrained(version)
@@ -182,7 +182,7 @@ def prepare_batch(
         image_embeddings,
         meta, 
         batch=1,
-        max_objs=30,
+        max_objs=120,
     ):
     phrases, images = meta.get("phrases"), meta.get("images")
     images = [None]*len(phrases) if images==None else images 
@@ -551,7 +551,7 @@ if __name__ == "__main__":
         dataset = json.load(f)
 
     meta_list = []
-    for data in dataset:
+    for idx, data in enumerate(dataset):
         prompt = data[args.selected_prompt]
         phrases = data['labels']
         locations = (np.array(data['bboxes']) / IMAGE_RESIZE_SIZE).tolist()
