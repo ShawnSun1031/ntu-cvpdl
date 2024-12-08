@@ -36,7 +36,9 @@ source .venv/bin/activate
 ## Evaluation
 **Should resize all the images to 512*512 in advance**, please see [ref_dataset/resize_to_512.py](ref_dataset/resize_to_512.py)
 
-### FID
+```
+python -m pytorch_fid ref_dataset/resize_images path/to/dataset2 --device cuda:0
+```
 
 <table>
     <tr>
