@@ -1,0 +1,14 @@
+[project]
+name = "blip"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "notebook>=7.3.1",
+    "salesforce-lavis>=1.0.2",
+    "transformers",
+]
+
+[tool.uv.sources]
+transformers = { git = "https://github.com/huggingface/transformers" }

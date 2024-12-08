@@ -12,6 +12,8 @@ conda activate cvpdl-hw3
 ```sh=
 pip install uv
 ```
+**Notice that due to the transformer package contradiction of `blip` and `gligen`**  
+We have two venv respectively, thus you need to sync two folder to build two venv
 ```sh=
 uv sync
 ```

@@ -1,0 +1,27 @@
+[project]
+name = "gligen"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "albumentations==0.4.3",
+    "imageio-ffmpeg==0.4.2",
+    "imageio==2.9.0",
+    "opencv-python>=4.10.0.84",
+    "pudb==2019.2",
+    "pytorch-lightning==1.4.2",
+    "omegaconf==2.1.1",
+    "test-tube>=0.7.5",
+    "streamlit>=1.40.2",
+    "einops==0.3.0",
+    "torch-fidelity==0.3.0",
+    "protobuf~=3.20.1",
+    "torchmetrics==0.6.0",
+    "transformers==4.19.2",
+    "kornia==0.5.8",
+    "clip",
+]
+
+[tool.uv.sources]
+clip = { git = "https://github.com/openai/CLIP.git" }
