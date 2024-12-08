@@ -48,23 +48,44 @@ source .venv/bin/activate
 ```
 python -m pytorch_fid ref_dataset/resize_images path/to/dataset2 --device cuda:0
 ```
+- blip2_opt_6_7b_coco
+    <table>
+        <tr>
+            <td>   </td>
+            <td colspan="2"> Text grounding </td>
+            <td> Layout-to-Image </td>
+        </tr>
+        <tr>
+            <td> prompt </td>
+            <td> generated_text </td>
+            <td> prompt_w_suffix </td>
+            <td> Template #3 </td>
+        </tr>
+        <tr>
+            <td> FID </td>
+            <td> 48.28 </td>
+            <td> 62.21 </td>
+            <td>  </td>
+        </tr>
+    </table>
 
-<table>
-    <tr>
-        <td>   </td>
-        <td colspan="2"> Text grounding </td>
-        <td> Layout-to-Image </td>
-    </tr>
-    <tr>
-        <td> prompt </td>
-        <td> Template #1 </td>
-        <td> Template #2 </td>
-        <td> Template #3 </td>
-    </tr>
-    <tr>
-        <td> FID </td>
-        <td> 48.28 </td>
-        <td>  </td>
-        <td>  </td>
-    </tr>
-</table>
+- blip2-flan-t5-xl
+    <table>
+        <tr>
+            <td>   </td>
+            <td colspan="2"> Text grounding </td>
+            <td> Layout-to-Image </td>
+        </tr>
+        <tr>
+            <td> prompt </td>
+            <td> generated_text </td>
+            <td> prompt_w_suffix </td>
+            <td> Template #3 </td>
+        </tr>
+        <tr>
+            <td> FID </td>
+            <td>  </td>
+            <td>  </td>
+            <td>  </td>
+        </tr>
+    </table>
