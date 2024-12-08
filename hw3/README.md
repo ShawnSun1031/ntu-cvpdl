@@ -22,14 +22,14 @@ source .venv/bin/activate
 
 ## How to run your code?
 1. Image Captioning and Prompt Design  
-    please check the [src/blip_image_captioning.ipynb](src/blip_image_captioning.ipynb)
+    please check the [src/blip/blip_image_captioning.ipynb](src/blip/blip_image_captioning.ipynb)
 2. Text-to-Image Generation
     ```=sh
     bash script/run_gligen_inference.sh
     ```
     Notice that the src/gligen is a hack from https://github.com/gligen/GLIGEN/tree/master
 
-    For more details, please check the script [script/run_gligen_inference.sh](script/run_gligen_inference.sh) and the inference progroam [gligen/gligen_inference.py](gligen/gligen_inference.py)
+    For more details, please check the script [script/run_gligen_inference.sh](script/run_gligen_inference.sh) and the inference progroam [src/gligen/gligen_inference.py](src/gligen/gligen_inference.py)
 
 ## Evaluation
 **Should resize all the images to 512*512 in advance**, please see [ref_dataset/resize_to_512.py](ref_dataset/resize_to_512.py)
