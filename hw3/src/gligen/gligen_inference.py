@@ -147,39 +147,19 @@ def complete_mask(has_mask, max_objs):
 @cache
 @torch.no_grad()
 def load_pretrained_model():
-    max_objs = 120
     version = "openai/clip-vit-large-patch14"
     model = CLIPModel.from_pretrained(version).cuda()
     processor = CLIPProcessor.from_pretrained(version)
 
-    boxes = torch.zeros(max_objs, 4)
-    masks = torch.zeros(max_objs)
-    text_masks = torch.zeros(max_objs)
-    image_masks = torch.zeros(max_objs)
-    text_embeddings = torch.zeros(max_objs, 768)
-    image_embeddings = torch.zeros(max_objs, 768)
-
     return (
         model,
         processor,
-        boxes,
-        masks,
-        text_masks,
-        image_masks,
-        text_embeddings,
-        image_embeddings,
     )
 
 @torch.no_grad()
 def prepare_batch(
         model,
         processor,
-        boxes,
-        masks,
-        text_masks,
-        image_masks,
-        text_embeddings,
-        image_embeddings,
         meta, 
         batch=1,
         max_objs=120,
@@ -202,12 +182,12 @@ def prepare_batch(
     # model = CLIPModel.from_pretrained(version).cuda()
     # processor = CLIPProcessor.from_pretrained(version)
 
-    # boxes = torch.zeros(max_objs, 4)
-    # masks = torch.zeros(max_objs)
-    # text_masks = torch.zeros(max_objs)
-    # image_masks = torch.zeros(max_objs)
-    # text_embeddings = torch.zeros(max_objs, 768)
-    # image_embeddings = torch.zeros(max_objs, 768)
+    boxes = torch.zeros(max_objs, 4)
+    masks = torch.zeros(max_objs)
+    text_masks = torch.zeros(max_objs)
+    image_masks = torch.zeros(max_objs)
+    text_embeddings = torch.zeros(max_objs, 768)
+    image_embeddings = torch.zeros(max_objs, 768)
     
     text_features = []
     image_features = []
@@ -413,12 +393,6 @@ def run(meta_list, config, starting_noise=None, ckpt=None):
     (
         clip_model,
         processor,
-        boxes,
-        masks,
-        text_masks,
-        image_masks,
-        text_embeddings,
-        image_embeddings,
     ) = load_pretrained_model()
 
     # - - - - - prepare batch - - - - - #
@@ -440,14 +414,9 @@ def run(meta_list, config, starting_noise=None, ckpt=None):
             batch = prepare_batch(
                 clip_model,
                 processor,
-                boxes,
-                masks,
-                text_masks,
-                image_masks,
-                text_embeddings,
-                image_embeddings,
                 meta, 
-                config.batch_size
+                config.batch_size,
+                max_objs=len(meta['locations'])
             )
         context = text_encoder.encode(  [meta["prompt"]]*config.batch_size  )
         uc = text_encoder.encode( config.batch_size*[""] )
