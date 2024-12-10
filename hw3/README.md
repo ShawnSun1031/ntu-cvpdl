@@ -86,6 +86,6 @@ python -m pytorch_fid ref_dataset/resize_images path/to/dataset2 --device cuda:0
             <td> FID </td>
             <td> 49.03 </td>
             <td> 64.93 </td>
-            <td>  </td>
+            <td> 66.43 </td>
         </tr>
     </table>
