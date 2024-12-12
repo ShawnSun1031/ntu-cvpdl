@@ -59,7 +59,7 @@ python -m pytorch_fid ref_dataset/resize_images path/to/dataset2 --device cuda:0
             <td> prompt </td>
             <td> generated_text </td>
             <td> prompt_w_suffix </td>
-            <td> Template #3 </td>
+            <td> prompt_w_suffix </td>
         </tr>
         <tr>
             <td> FID </td>
@@ -80,7 +80,7 @@ python -m pytorch_fid ref_dataset/resize_images path/to/dataset2 --device cuda:0
             <td> prompt </td>
             <td> generated_text </td>
             <td> prompt_w_suffix </td>
-            <td> Template #3 </td>
+            <td> prompt_w_suffix </td>
         </tr>
         <tr>
             <td> FID </td>
